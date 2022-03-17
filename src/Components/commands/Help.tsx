@@ -1,7 +1,7 @@
 import React from "react";
-
+import { Fade } from "react-awesome-reveal";
 function Help() {
-  return <div>Help</div>;
+  return <div>help</div>;
 }
 
 export default Help;
