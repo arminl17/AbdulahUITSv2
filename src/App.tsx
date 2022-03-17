@@ -1,5 +1,7 @@
 import React from "react";
-import "./App.css";
+import "./styles/App.scss";
+
+import RoutingHandler from "./Components/RoutingHandler";
 
 import RoutingHandler from "./Components/RoutingHandler";
 

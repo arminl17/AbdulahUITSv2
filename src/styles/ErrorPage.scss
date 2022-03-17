@@ -1,0 +1,49 @@
+.error-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
+  height: 100vh;
+  justify-content: center;
+
+  .error-spinner {
+    width: 100px;
+    height: 100px;
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+    border: 3px dashed #f1d1dd;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    animation: spin 1s infinite;
+
+    .inner-spinner {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 2px dashed rgb(255, 254, 254);
+      animation: spin 3s infinite;
+    }
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(180deg) scale(1.2);
+    }
+    0% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .error-text {
+    color: white;
+
+    a {
+      color: white;
+    }
+  }
+}
