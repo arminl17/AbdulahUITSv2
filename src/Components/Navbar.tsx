@@ -3,22 +3,25 @@ import React from "react";
 import { commandList } from "../assets/commandList";
 import NavbarCommands from "./NavbarCommands";
 import "../styles/_navbar.scss";
-interface Props {
-  activeCommand: string;
-  setActiveCommand(commandName: string): void;
+import { ICommand } from "../interfaces/CommandInterface";
+
+interface NavbarProps {
+  activeCommand: ICommand;
+  setActiveCommand(activeCommand: ICommand): void;
 }
 
-const Navbar = ({ activeCommand, setActiveCommand }: Props) => {
+const Navbar = ({ activeCommand, setActiveCommand }: NavbarProps) => {
   return (
     <div className='navbar'>
       <div className='navbar-logo'>
         <img className='logo' src={require("../assets/logoZara.png")} />
       </div>
       <div className='navbar-commands'>
-        {commandList.map((value) => {
+        {commandList.map((command, index) => {
           return (
             <NavbarCommands
-              commandName={value}
+              key={index}
+              command={command}
               activeCommand={activeCommand}
               setActiveCommand={setActiveCommand}
             />

@@ -1,30 +1,32 @@
 import React from "react";
+import { ICommand } from "../interfaces/CommandInterface";
 
-interface Props {
-  commandName: string;
-  activeCommand: string;
-  setActiveCommand(activeCommand: string): void;
+interface NavbarCommandsProps {
+  command: ICommand;
+  activeCommand: ICommand;
+  setActiveCommand(activeCommand: ICommand): void;
 }
 const NavbarCommands = ({
-  commandName,
+  command,
   activeCommand,
   setActiveCommand,
-}: Props) => {
-  const handleClick = (commandName: string): void => {
-    setActiveCommand(commandName);
+}: NavbarCommandsProps) => {
+  const handleClick = (command: ICommand): void => {
+    setActiveCommand(command);
   };
+  console.log(command.name);
   return (
     <p
       className={
-        activeCommand === commandName
+        activeCommand.name === command.name
           ? "navbar-command-text active"
           : "navbar-command-text"
       }
       onClick={() => {
-        handleClick(commandName);
+        handleClick(command);
       }}
     >
-      {commandName}
+      {command.name}
     </p>
   );
 };
