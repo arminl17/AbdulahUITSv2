@@ -1,0 +1,61 @@
+@import "./_colors.scss";
+
+.navbar {
+  height: 100%;
+  background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.04) 100%
+    ),
+    #086b8f;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  padding-top: 0px;
+  padding: 10px;
+  box-shadow: $mainBoxShadow;
+  padding-right: 1%;
+  .navbar-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .logo {
+      width: 125px;
+      align-self: center;
+    }
+  }
+  .navbar-commands {
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell,
+      Noto Sans, sans-serif, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+      "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji",
+      "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    margin-top: 25px;
+    align-items: flex-start;
+    padding-left: 10px;
+    cursor: pointer;
+
+    .active {
+      background-color: #fffc;
+      transform: translateX(5%);
+      box-shadow: $contentColorBoxShadow;
+    }
+    .navbar-command-text {
+      padding-top: 15px;
+      padding-bottom: 15px;
+      transition: 500ms;
+      width: 100%;
+      padding-left: 5px;
+      border-radius: 10px;
+      margin-bottom: 5px;
+      text-shadow: $contentColorBoxShadow;
+    }
+    :hover {
+      background-color: #fffc;
+      transform: translateX(5%);
+      box-shadow: $contentColorBoxShadow;
+    }
+  }
+}
