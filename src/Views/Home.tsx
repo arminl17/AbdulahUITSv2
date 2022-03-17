@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import CommandUI from "../Components/CommandUI";
 
 import Navbar from "../Components/Navbar";
 
@@ -13,7 +14,7 @@ const Home = () => {
 
       <div className='mainWrapper'>
         <h2 className='abdulahText'>ABDULAH UI - {activeCommand} </h2>
-        {activeCommand}
+        <CommandUI activeCommand={activeCommand} />
       </div>
     </>
   );
