@@ -1,27 +1,56 @@
 import React, { FC } from "react";
+import { Fade } from "react-awesome-reveal";
+import { ICommand } from "../interfaces/CommandInterface";
 
-import Ping from "../Components/commands/Ping";
-import Help from "../Components/commands/Help";
-import NoPermission from "./commands/Nopermission";
-import Status from "./commands/Status";
+import "../styles/CommandUI.scss";
 
 interface Props {
-  activeCommand: string;
+  activeCommand: ICommand;
 }
 const CommandUI = ({ activeCommand }: Props) => {
-  const activeSwitch = (activeCommand: string) => {
-    switch (activeCommand) {
-      case "Ping":
-        return <Ping />;
-      case "Help":
-        return <Help />;
-      case "App:status":
-        return <Status />;
-      default:
-        return <NoPermission />;
-    }
-  };
-  return <>{activeSwitch(activeCommand)}</>;
+  return (
+    <div className='commandContent'>
+      <Fade cascade>
+        <p className='commandDescText'>{activeCommand.commandDesc}</p>
+      </Fade>
+      <div className='commandInputOutputWrapper'>
+        <div className='command'>
+          <div className='inputDesc'>
+            {activeCommand.argumentNum === 0 ? (
+              <></>
+            ) : (
+              activeCommand.arguments.map((name, index) => (
+                <span key={index} className='inputDesc'>
+                  {name}
+                </span>
+              ))
+            )}
+          </div>
+          <div className='input'>
+            {activeCommand.argumentNum === 0 ? (
+              <></>
+            ) : (
+              activeCommand.arguments.map((name, index) => {
+                return (
+                  <input
+                    key={index}
+                    type='text'
+                    className='optionsText'
+                    placeholder={name}
+                  />
+                );
+              })
+            )}
+          </div>
+        </div>
+
+        <div className='commandResponse'>
+          <p>command response</p>
+        </div>
+      </div>
+      <button className='commandRun'>Run the command</button>
+    </div>
+  );
 };
 
 export default CommandUI;
