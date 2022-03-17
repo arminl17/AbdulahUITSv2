@@ -1,0 +1,147 @@
+@import "../styles/colors";
+.commandContent {
+  display: flex;
+  align-content: space-between;
+  background: $contentColorBG;
+  box-shadow: $contentColorBoxShadow;
+  overflow-y: hidden;
+  flex-grow: 0.9;
+  align-self: center;
+  height: 60%;
+  margin: 0 auto;
+  width: 90%;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  flex-direction: column;
+  .commandDescText {
+    padding: 15px;
+  }
+
+  .commandRun {
+    border-radius: 30px;
+    padding: 10px 20px;
+    color: #ffffffe6;
+    background-image: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.2) 100%
+    );
+    box-shadow: 0 14px 44px #00000026, 0 10px 10px #00000012;
+    font-weight: 500;
+    border: 0;
+    transition: 0.2s all;
+    cursor: pointer;
+    background-color: #00a4f3;
+    text-align: center;
+    width: 90%;
+    align-self: center;
+  }
+
+  .commandInputOutputWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 50%;
+
+    .command {
+      margin-left: 15px;
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+
+      .inputDesc {
+        height: 50px;
+        display: flex;
+        flex-direction: column;
+        text-align: right;
+        padding-right: 15px;
+
+        span.inputDesc {
+          padding-bottom: 25px;
+          height: 100px;
+        }
+      }
+
+      .input {
+        display: flex;
+        flex-direction: column;
+        height: 50px;
+        input {
+          margin-bottom: 20px;
+        }
+        .optionsText {
+          background-color: #086b8f;
+          box-shadow: $mainBoxShadow;
+          padding-left: 10px;
+          padding-top: 5px;
+          padding-bottom: 5px;
+          padding-right: 5px;
+          margin-bottom: 10px;
+          display: block;
+          border-radius: 15px;
+          cursor: pointer;
+        }
+        .custom-select-options {
+          display: flex;
+          flex-direction: column;
+          background: #086b8f;
+          position: absolute;
+          opacity: 1;
+          transition: all 500ms ease-in-out;
+          .options {
+            box-shadow: $contentColorBoxShadow;
+            padding-left: 20px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-right: 50px;
+            margin-bottom: 5px;
+            background: linear-gradient(to right, #19a2d4 50%, #086b8f 50%);
+            background-size: 200%;
+            background-position: right bottom;
+            transition: all 0.5s ease-out;
+            cursor: pointer;
+          }
+          :hover {
+            background-position: left bottom;
+          }
+        }
+      }
+    }
+
+    .commandResponse {
+      width: 50%;
+    }
+  }
+}
+
+input::placeholder {
+  color: #fafafa;
+}
+
+input {
+  border: 1px solid #fafafa;
+}
+.abdulahText {
+  align-self: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.04) 100%
+    ),
+    #086b8f;
+  box-shadow: $mainBoxShadow;
+  width: 90%;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  padding-left: 20px;
+}
+
+.commandDescText.noPerm {
+  font-size: 25px;
+  text-align: center;
+}
