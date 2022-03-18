@@ -12,23 +12,44 @@ interface NavbarProps {
 
 const Navbar = ({ activeCommand, setActiveCommand }: NavbarProps) => {
   return (
-    <div className='navbar'>
-      <div className='navbar-logo'>
-        <img className='logo' src={require("../assets/logoZara.png")} />
+    <>
+      <div className='navbar'>
+        <div className='navbar-logo'>
+          <img className='logo' src={require("../assets/logoZara.png")} />
+        </div>
+        <div className='navbar-commands'>
+          {commandList.map((command, index) => {
+            return (
+              <NavbarCommands
+                key={index}
+                command={command}
+                activeCommand={activeCommand}
+                setActiveCommand={setActiveCommand}
+              />
+            );
+          })}
+        </div>
       </div>
-      <div className='navbar-commands'>
-        {commandList.map((command, index) => {
-          return (
-            <NavbarCommands
-              key={index}
-              command={command}
-              activeCommand={activeCommand}
-              setActiveCommand={setActiveCommand}
-            />
-          );
-        })}
+
+      {/* start of mobile navbar */}
+
+      <div className='navbar mobile'>
+        <div className='navbar-commands mobile'>
+          {commandList.map((command, index) => {
+            return (
+              <NavbarCommands
+                key={index}
+                command={command}
+                activeCommand={activeCommand}
+                setActiveCommand={setActiveCommand}
+              />
+            );
+          })}
+        </div>
       </div>
-    </div>
+
+      {/*end of mobile navbar */}
+    </>
   );
 };
 
