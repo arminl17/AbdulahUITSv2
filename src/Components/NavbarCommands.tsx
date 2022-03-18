@@ -1,4 +1,3 @@
-import React from "react";
 import { ICommand } from "../interfaces/CommandInterface";
 
 interface NavbarCommandsProps {

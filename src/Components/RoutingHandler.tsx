@@ -1,8 +1,8 @@
-import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import ErrorPage from "../Views/ErrorPage";
 
+import ErrorPage from "../Views/ErrorPage";
 import Home from "../Views/Home";
+
 function RoutingHandler() {
   return (
     <Router>
