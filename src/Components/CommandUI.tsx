@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Fade } from "react-awesome-reveal";
 import { ICommand } from "../interfaces/CommandInterface";
-
+import { CommandArgument } from "../types/CommandArgument";
 import "../styles/CommandUI.scss";
 
 interface Props {
@@ -9,46 +9,56 @@ interface Props {
 }
 const CommandUI = ({ activeCommand }: Props) => {
   return (
-    <div className='commandContent'>
+    <div className='command-content'>
       <Fade cascade>
-        <p className='commandDescText'>{activeCommand.commandDesc}</p>
+        <p className='command-desc-text'>{activeCommand.commandDesc}</p>
       </Fade>
-      <div className='commandInputOutputWrapper'>
+      <div className='command-input-output-wrapper'>
         <div className='command'>
-          <div className='inputDesc'>
-            {activeCommand.argumentNum === 0 ? (
-              <></>
-            ) : (
-              activeCommand.arguments.map((name, index) => (
-                <span key={index} className='inputDesc'>
-                  {name}
-                </span>
-              ))
-            )}
-          </div>
-          <div className='input'>
-            {activeCommand.argumentNum === 0 ? (
-              <></>
-            ) : (
-              activeCommand.arguments.map((name, index) => {
+          {activeCommand.argumentNum === 0 ? (
+            <>
+              <p>This command does not require any parameters</p>
+            </>
+          ) : (
+            activeCommand.arguments.map(
+              (argument: CommandArgument, index: number) => {
                 return (
-                  <input
-                    key={index}
-                    type='text'
-                    className='optionsText'
-                    placeholder={name}
-                  />
+                  <div className='custom-select' key={`cmdarg${argument.name}`}>
+                    <span className='input-desc'>{argument.name}</span>
+                    {argument.type === "dropdown" ? (
+                      <select
+                        name='argument-select'
+                        className='custom-select-options'
+                      >
+                        {argument.values?.map(
+                          (value: string, index: number) => {
+                            return (
+                              <option
+                                className='options'
+                                value={value}
+                                key={`cmdargval${value}`}
+                              >
+                                {value}
+                              </option>
+                            );
+                          }
+                        )}
+                      </select>
+                    ) : (
+                      <input type='text' placeholder={argument.name} />
+                    )}
+                  </div>
                 );
-              })
-            )}
-          </div>
+              }
+            )
+          )}
         </div>
 
-        <div className='commandResponse'>
+        <div className='command-response'>
           <p>command response</p>
         </div>
       </div>
-      <button className='commandRun'>Run the command</button>
+      <button className='command-run'>Run the command</button>
     </div>
   );
 };
