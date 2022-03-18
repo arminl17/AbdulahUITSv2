@@ -1,5 +1,6 @@
-import React, { FC } from "react";
+import React, { useState, useEffect, ChangeEvent } from "react";
 import { Fade } from "react-awesome-reveal";
+import axios from "axios";
 import { ICommand } from "../interfaces/CommandInterface";
 import { CommandArgument } from "../types/CommandArgument";
 import "../styles/CommandUI.scss";
@@ -7,7 +8,64 @@ import "../styles/CommandUI.scss";
 interface Props {
   activeCommand: ICommand;
 }
+
+type stateType = string[];
+
+const API_URL: string = process.env.REACT_APP_API_URL || "NO ENV VAR";
+const TOKEN: string = process.env.REACT_APP_API_KEY || "NO ENV VAR";
+
 const CommandUI = ({ activeCommand }: Props) => {
+  const [apiArguments, setApiArguments] = useState<stateType>([]);
+  const [gitTag, setGitTag] = useState<string>("");
+  const [apiResponse, setApiResponse] = useState<string[]>([]);
+
+  useEffect(() => {
+    setApiArguments([]);
+    setGitTag("");
+    setApiResponse([]);
+  }, [activeCommand]);
+
+  const handleSubmit = (): void => {
+    let newArgs: stateType = apiArguments;
+    if (gitTag !== "") {
+      newArgs.push(gitTag);
+      setApiArguments(newArgs);
+    }
+
+    axios
+      .post(API_URL, [activeCommand.name, apiArguments], {
+        headers: {
+          "abdul-auth-token": TOKEN,
+        },
+      })
+      .then((response) => {
+        setApiResponse(response.data);
+        if (activeCommand.name === "help") {
+          let responseData = response.data;
+          let string = responseData.slice(18);
+          let newString = string.split("\n");
+          console.log(string);
+          console.log(newString);
+          setApiResponse(string);
+        }
+      });
+    console.log(apiArguments);
+    setApiArguments([]);
+    setGitTag("");
+  };
+
+  const handleSelect = (event: ChangeEvent<HTMLSelectElement>): void => {
+    const selectedOptions = event.currentTarget.selectedOptions;
+    const newArgs: stateType = apiArguments;
+    for (let i = 0; i < selectedOptions.length; i++) {
+      newArgs.push(selectedOptions[i].value);
+    }
+    setApiArguments(newArgs);
+  };
+
+  const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
+    setGitTag(event.target.value);
+  };
   return (
     <div className='command-content'>
       <Fade cascade>
@@ -29,7 +87,9 @@ const CommandUI = ({ activeCommand }: Props) => {
                       <select
                         name='argument-select'
                         className='custom-select-options'
+                        onChange={handleSelect}
                       >
+                        <option className='options'>Select an option</option>
                         {argument.values?.map(
                           (value: string, index: number) => {
                             return (
@@ -45,7 +105,12 @@ const CommandUI = ({ activeCommand }: Props) => {
                         )}
                       </select>
                     ) : (
-                      <input type='text' placeholder={argument.name} />
+                      <input
+                        type='text'
+                        placeholder={`Please type ${argument.name}..`}
+                        value={gitTag}
+                        onChange={handleInput}
+                      />
                     )}
                   </div>
                 );
@@ -55,10 +120,12 @@ const CommandUI = ({ activeCommand }: Props) => {
         </div>
 
         <div className='command-response'>
-          <p>command response</p>
+          <p>{apiResponse}</p>
         </div>
       </div>
-      <button className='command-run'>Run the command</button>
+      <button className='command-run' onClick={handleSubmit}>
+        Run the command
+      </button>
     </div>
   );
 };
