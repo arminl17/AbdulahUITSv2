@@ -14,8 +14,8 @@ const Home = () => {
         setActiveCommand={setActiveCommand}
       />
 
-      <div className='mainWrapper'>
-        <h2 className='abdulahText'>ABDULAH UI - {activeCommand.name} </h2>
+      <div className='main-wrapper'>
+        <h2 className='abdulah-text'>ABDULAH UI - {activeCommand.name} </h2>
         <CommandUI activeCommand={activeCommand} />
       </div>
     </>
