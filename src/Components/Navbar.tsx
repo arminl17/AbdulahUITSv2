@@ -1,9 +1,9 @@
-import React from "react";
-
-import { commandList } from "../assets/commandList";
 import NavbarCommands from "./NavbarCommands";
-import "../styles/_navbar.scss";
+
 import { ICommand } from "../interfaces/CommandInterface";
+import { commandList } from "../assets/commandList";
+
+import "../styles/_navbar.scss";
 
 interface NavbarProps {
   activeCommand: ICommand;
@@ -13,6 +13,7 @@ interface NavbarProps {
 const Navbar = ({ activeCommand, setActiveCommand }: NavbarProps) => {
   return (
     <>
+      {/* start of regular navbar */}
       <div className='navbar'>
         <div className='navbar-logo'>
           <img className='logo' src={require("../assets/logoZara.png")} />
@@ -30,7 +31,7 @@ const Navbar = ({ activeCommand, setActiveCommand }: NavbarProps) => {
           })}
         </div>
       </div>
-
+      {/* end of regular navbar */}
       {/* start of mobile navbar */}
 
       <div className='navbar mobile'>

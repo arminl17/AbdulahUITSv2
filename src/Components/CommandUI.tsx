@@ -19,6 +19,7 @@ const CommandUI = ({ activeCommand }: Props) => {
   const [gitTag, setGitTag] = useState<string>("");
   const [apiResponse, setApiResponse] = useState<string[]>([]);
 
+  /* RESET EVERY STATE WHEN USER SELECTS A NEW COMMAND*/
   useEffect(() => {
     setApiArguments([]);
     setGitTag("");
@@ -43,13 +44,9 @@ const CommandUI = ({ activeCommand }: Props) => {
         if (activeCommand.name === "help") {
           let responseData = response.data;
           let string = responseData.slice(18);
-          let newString = string.split("\n");
-          console.log(string);
-          console.log(newString);
           setApiResponse(string);
         }
       });
-    console.log(apiArguments);
     setApiArguments([]);
     setGitTag("");
   };

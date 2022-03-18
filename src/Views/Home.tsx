@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import CommandUI from "../Components/CommandUI";
+import { useState } from "react";
 
+import CommandUI from "../Components/CommandUI";
 import Navbar from "../Components/Navbar";
+
 import { ICommand } from "../interfaces/CommandInterface";
 import { commandList } from "../assets/commandList";
 

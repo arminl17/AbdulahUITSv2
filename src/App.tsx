@@ -1,4 +1,3 @@
-import React from "react";
 import "./styles/App.scss";
 
 import RoutingHandler from "./Components/RoutingHandler";
