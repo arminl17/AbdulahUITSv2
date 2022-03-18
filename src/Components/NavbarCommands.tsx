@@ -14,7 +14,6 @@ const NavbarCommands = ({
   const handleClick = (command: ICommand): void => {
     setActiveCommand(command);
   };
-  console.log(command.name);
   return (
     <p
       className={
@@ -26,7 +25,7 @@ const NavbarCommands = ({
         handleClick(command);
       }}
     >
-      {command.name}
+      {command.name.toUpperCase()}
     </p>
   );
 };
