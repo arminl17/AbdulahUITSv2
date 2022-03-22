@@ -1,8 +1,10 @@
 import React, { useState, useEffect, ChangeEvent } from "react";
 import { Fade } from "react-awesome-reveal";
 import axios from "axios";
+
 import { ICommand } from "../interfaces/CommandInterface";
 import { CommandArgument } from "../types/CommandArgument";
+import { apiCall } from "../services";
 import "../styles/CommandUI.scss";
 
 interface Props {
@@ -10,9 +12,6 @@ interface Props {
 }
 
 type stateType = string[];
-
-const API_URL: string = process.env.REACT_APP_API_URL || "NO ENV VAR";
-const TOKEN: string = process.env.REACT_APP_API_KEY || "NO ENV VAR";
 
 const CommandUI = ({ activeCommand }: Props) => {
   const [apiArguments, setApiArguments] = useState<stateType>([]);
@@ -33,20 +32,14 @@ const CommandUI = ({ activeCommand }: Props) => {
       setApiArguments(newArgs);
     }
 
-    axios
-      .post(API_URL, [activeCommand.name, apiArguments], {
-        headers: {
-          "abdul-auth-token": TOKEN,
-        },
-      })
-      .then((response) => {
-        setApiResponse(response.data);
-        if (activeCommand.name === "help") {
-          let responseData = response.data;
-          let string = responseData.slice(18);
-          setApiResponse(string);
-        }
-      });
+    apiCall(activeCommand.name, apiArguments).then((response) => {
+      setApiResponse(response.data);
+      if (activeCommand.name === "help") {
+        let responseData = response.data;
+        let string = responseData.slice(18);
+        setApiResponse(string);
+      }
+    });
     setApiArguments([]);
     setGitTag("");
   };
