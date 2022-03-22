@@ -7,12 +7,7 @@
   flex-direction: column;
   display: flex;
   height: 100%;
-  background: linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 0.04) 100%
-    ),
-    #086b8f;
+  background: #{$navbarBG};
   z-index: 1;
   top: 0;
   left: 0;
@@ -43,7 +38,7 @@
     cursor: pointer;
 
     .active {
-      background-color: #fffc;
+      background-color: $navbarText;
       transform: translateX(5%);
       box-shadow: $contentColorBoxShadow;
     }
@@ -58,7 +53,7 @@
       text-shadow: $contentColorBoxShadow;
     }
     :hover {
-      background-color: #fffc;
+      background-color: $navbarText;
       transform: translateX(5%);
       box-shadow: $contentColorBoxShadow;
     }
@@ -73,12 +68,7 @@
     display: flex;
     justify-content: flex-start;
     height: 75px;
-    background: linear-gradient(
-        180deg,
-        rgba(0, 0, 0, 0) 0%,
-        rgba(0, 0, 0, 0.04) 100%
-      ),
-      #086b8f;
+    background: #{$navbarBG};
     z-index: 1;
     top: 0;
     left: 0;
@@ -99,7 +89,7 @@
     cursor: pointer;
 
     .active {
-      background-color: #fffc;
+      background-color: $navbarText;
       box-shadow: $contentColorBoxShadow;
     }
     .navbar-command-text {
@@ -111,7 +101,7 @@
       text-shadow: $contentColorBoxShadow;
     }
     :hover {
-      background-color: #fffc;
+      background-color: $navbarText;
       transform: translateX(5%);
       box-shadow: $contentColorBoxShadow;
     }

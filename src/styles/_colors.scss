@@ -5,8 +5,18 @@ $backgroundColor: linear-gradient(
 );
 $mainBoxShadow: 0 14px 44px #096a8d26, 0 10px 10px #09698c12;
 $bodyColor: #022d3c;
-
 $contentColorBG: linear-gradient(180deg, #084054 0%, #022d3c 100%);
 $contentColorBoxShadow: 0 14px 44px #0000004d, 0 10px 10px #00000026;
-
 $secondaryColor: #bf151500;
+$navbarBG: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.04) 100%
+  ),
+  #086b8f;
+$navbarText: #fffc;
+$cmdButtonColor: linear-gradient(
+  180deg,
+  rgba(0, 0, 0, 0) 0%,
+  rgba(0, 0, 0, 0.2) 100%
+);
